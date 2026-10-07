@@ -16,6 +16,10 @@ struct token *read_next_token();
 static struct lex_process *lex_process;
 static struct token tmp_token;
 
+bool lex_is_in_expression() { 
+    return lex_process->current_expression_count > 0;
+}
+
 static char peekc() { return lex_process->function->peek_char(lex_process); }
 
 static char nextc() {
@@ -46,6 +50,9 @@ static struct pos lex_file_position() { return lex_process->pos; }
 struct token *token_create(struct token *_token) {
     memcpy(&tmp_token, _token, sizeof(struct token));
     tmp_token.pos = lex_file_position();
+    if (lex_is_in_expression()) {
+        tmp_token.between_brackets = buffer_ptr(lex_process->parenthesis_buffer);
+    }
     return &tmp_token;
 }
 
@@ -183,7 +190,6 @@ static void lex_finish_expression() {
         compiler_error(lex_process->compiler, "You closed an expression that was not opened.\n");
     }
 }
-bool lex_is_in_expression() { return lex_process->current_expression_count > 0; }
 
 struct token *token_make_one_line_comment() {
     struct buffer *buffer = buffer_create();
