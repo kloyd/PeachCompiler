@@ -1,3 +1,6 @@
+# Ensure output directories are created if not present.
+OBJ_DIRS = ./build/helpers
+
 OBJECTS= ./build/compiler.o \
 		./build/cprocess.o \
 		./build/helpers/vector.o \
@@ -8,6 +11,8 @@ OBJECTS= ./build/compiler.o \
 
 
 INCLUDES = -I./
+
+_dummy := $(shell mkdir -p $(OBJ_DIRS))
 
 all: ${OBJECTS}
 	gcc main.c ${INCLUDES} ${OBJECTS} -g -o ./main
@@ -32,6 +37,7 @@ all: ${OBJECTS}
 	
 ./build/helpers/buffer.o: ./helpers/buffer.c 
 	gcc ./helpers/buffer.c -o ./build/helpers/buffer.o -g -c 
+
 
 clean:
 	rm ./main
