@@ -1,0 +1,11 @@
+# Standard K&R Configuration Example
+BasedOnStyle: LLVM
+IndentWidth: 4
+ColumnLimit: 132
+UseTab: Never
+BreakBeforeBraces: Attach
+AllowShortIfStatementsOnASingleLine: false
+AlwaysBreakTemplateDeclarations: true
+SortIncludes: true
+SpaceAfterCast: false
+SpacesInParentheses: false
