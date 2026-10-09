@@ -144,6 +144,15 @@ struct vector *lex_process_tokens(struct lex_process *process);
 
 int lex(struct lex_process *process);
 
+/** 
+ * @brief Builds tokens for the input string
+ * 
+ * @param compiler
+ * @param str
+ * @return struct lex_process*
+ */
+struct lex_process *tokens_build_for_string(struct compile_process *compiler, const char *str);
+
 void compiler_error(struct compile_process *compiler, const char *msg, ...);
 void compiler_warning(struct compile_process *compiler, const char *msg, ...);
 
