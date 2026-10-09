@@ -54,7 +54,10 @@ struct pos {
     case ')':                                                                                                                      \
     case ']'
 
-enum { LEXICAL_ANALYSIS_ALL_OK, LEXICAL_ANALYSIS_INPUT_ERROR };
+enum { 
+    LEXICAL_ANALYSIS_ALL_OK, 
+    LEXICAL_ANALYSIS_INPUT_ERROR 
+};
 
 enum {
     TOKEN_TYPE_IDENTIFIER,
@@ -65,6 +68,13 @@ enum {
     TOKEN_TYPE_STRING,
     TOKEN_TYPE_COMMENT,
     TOKEN_TYPE_NEWLINE
+};
+
+enum {
+    NUMBER_TYPE_NORMAL,
+    NUMBER_TYPE_LONG,
+    NUMBER_TYPE_FLOAT,
+    NUMBER_TYPE_DOUBLE
 };
 
 struct token {
@@ -82,6 +92,10 @@ struct token {
         void *any;
     };
 
+    struct token_number {
+        int type;
+    } num;
+     
     // true if there is whitespace between the token and next token.
     bool whitespace;
 
@@ -127,6 +141,8 @@ struct compile_process {
         const char *abs_path;
     } cfile;
 
+    // A vector of tokens from lexical analysis.
+    struct vector *token_vec;
     FILE *ofile;
 };
 

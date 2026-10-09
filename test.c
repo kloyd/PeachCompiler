@@ -1,1 +1,4 @@
-(50+20)
+int main() {
+    int x = 50;
+    return 0;
+}

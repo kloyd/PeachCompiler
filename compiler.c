@@ -33,7 +33,7 @@ void print_tokens(struct lex_process *lex_process) {
         struct token *token = vector_at(lex_process->token_vec, i);
         printf("%d: ", i);
         if (token->type == TOKEN_TYPE_NUMBER) {
-            printf("(Number): %llu\n", token->llnum);
+            printf("(Number): %llu - type %d\n", token->llnum, token->num.type);
         } else if (token->type == TOKEN_TYPE_STRING) {
             printf("(String) %s\n", token->sval);
         } else if (token->type == TOKEN_TYPE_OPERATOR) {
@@ -71,6 +71,9 @@ int compile_file(const char *filename, const char *out_filename, int flags) {
         return COMPILER_FAILED_WITH_ERRORS;
     }
 
+    // save tokens
+    process->token_vec = lex_process->token_vec;
+    
     // Perform parsing -> AST
 
     // Perform code generation. -> ASM out
