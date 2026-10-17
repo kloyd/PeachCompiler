@@ -143,7 +143,18 @@ struct compile_process {
 
     // A vector of tokens from lexical analysis.
     struct vector *token_vec;
+
+    // temporary stack
+    struct vector *node_vec;
+    // actual tree
+    struct vector *node_tree_vec;
+
     FILE *ofile;
+};
+
+enum {
+    PARSE_ALL_OK,
+    PARSE_GENERAL_ERROR
 };
 
 enum {
@@ -227,6 +238,8 @@ int lex(struct lex_process *process);
  * @return struct lex_process*
  */
 struct lex_process *tokens_build_for_string(struct compile_process *compiler, const char *str);
+
+int parse(struct compile_process *process);
 
 void compiler_error(struct compile_process *compiler, const char *msg, ...);
 void compiler_warning(struct compile_process *compiler, const char *msg, ...);

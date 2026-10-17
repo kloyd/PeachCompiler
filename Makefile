@@ -3,6 +3,8 @@ OBJ_DIRS = ./build/helpers
 
 OBJECTS= ./build/compiler.o \
 		./build/cprocess.o \
+		./build/parser.o \
+		./build/node.o \
 		./build/helpers/vector.o \
 		./build/helpers/buffer.o \
 		./build/lex_process.o \
@@ -31,6 +33,12 @@ all: ${OBJECTS}
 
 ./build/cprocess.o: ./cprocess.c 
 	gcc ./cprocess.c -o ./build/cprocess.o -g -c 
+
+./build/parser.o: ./parser.c 
+	gcc ./parser.c -o ./build/parser.o -g -c 
+
+./build/node.o: ./node.c 
+	gcc ./node.c -o ./build/node.o -g -c 
 
 ./build/helpers/vector.o: ./helpers/vector.c 
 	gcc ./helpers/vector.c -o ./build/helpers/vector.o -g -c 
