@@ -5,6 +5,7 @@ OBJECTS= ./build/compiler.o \
 		./build/cprocess.o \
 		./build/parser.o \
 		./build/node.o \
+		./build/expressionable.o \
 		./build/helpers/vector.o \
 		./build/helpers/buffer.o \
 		./build/lex_process.o \
@@ -39,6 +40,9 @@ all: ${OBJECTS}
 
 ./build/node.o: ./node.c 
 	gcc ./node.c -o ./build/node.o -g -c 
+
+./build/expressionable.o: ./expressionable.c 
+	gcc ./expressionable.c -o ./build/expressionable.o -g -c 
 
 ./build/helpers/vector.o: ./helpers/vector.c 
 	gcc ./helpers/vector.c -o ./build/helpers/vector.o -g -c 

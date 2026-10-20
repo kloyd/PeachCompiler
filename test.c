@@ -1,4 +1,2 @@
-int main() {
-    int x = 50;
-    return 0;
-}
+52789+2001
+
